@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\RegisterController;
 use Laravel\Sanctum\Http\Controllers\AuthenticatedSessionController;
 
@@ -27,7 +28,8 @@ Route::group(['prefix' => '/v1'], function () {
     Route::middleware('auth:sanctum')->group(function () {
 
         Route::delete('/logout', [AuthController::class, 'logout']);
-
+        //Eventos
+        Route::post('create/event', [EventController::class, 'create']);
 
     });
 });
