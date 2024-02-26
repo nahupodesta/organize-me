@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('last_name');
             $table->string('username');
+            $table->string('profile_picture')->nullable();
             $table->unsignedInteger('age');
-            $table->date('birth_date'); // Agregar campo 'birth_date' de tipo fecha
+            $table->date('birth_date');
             $table->unsignedInteger('telephone');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
