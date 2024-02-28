@@ -25,7 +25,6 @@ php artisan view:cache
 
 # Run any database migrations
 php artisan migrate --force
-php artisan migrate:fresh
 
 # Check if the environment variable is set to "false" or not set at all
 if [[ "${!ENV_VAR_NAME}" = "false" ]] || [[ -z "${!ENV_VAR_NAME}" ]]; then
