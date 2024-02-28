@@ -29,7 +29,10 @@ Route::group(['prefix' => '/v1'], function () {
 
         Route::delete('/logout', [AuthController::class, 'logout']);
         //Eventos
-        Route::post('create/event', [EventController::class, 'create']);
+        Route::post('/create/event', [EventController::class, 'create']);
+        Route::put('/update/event/{id}', [EventController::class, 'update']);
+        Route::delete('/delete/event/{id}', [EventController::class, 'destroy']);
 
     });
+
 });
