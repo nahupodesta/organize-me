@@ -32,7 +32,7 @@ Route::group(['prefix' => '/v1'], function () {
         Route::post('/create/event', [EventController::class, 'create']);
         Route::put('/update/event/{id}', [EventController::class, 'update']);
         Route::delete('/delete/event/{id}', [EventController::class, 'destroy']);
-
+        Route::get('/events/{id}', [EventController::class, 'eventsByUser']);
     });
 
 });
