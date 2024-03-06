@@ -13,7 +13,7 @@ class RegisterController extends Controller
     public function registerUser(Request $request)
     {
         try {
-            $this->validate($request, [
+            $validatedData = $this->validate($request, [
                 'name' => 'required|string|max:30',
                 'last_name' => 'required|string|max:30',
                 'username' => 'required|string|unique:users|min:3|max:20',
@@ -25,15 +25,15 @@ class RegisterController extends Controller
                 'password_confirmation' => 'required|same:password'
             ]);
 
-            User::create([
-                'name' => $request->name,
-                'last_name' => $request->last_name,
-                'username' => Str::slug($request->username),
-                'age' => $request->age,
-                'birth_date' => $request->birth_date,
-                'telephone' => $request->telephone,
-                'email' => $request->email,
-                'password' => Hash::make($request->password)
+            $user = User::create([
+                'name' => $validatedData['name'],
+                'last_name' => $validatedData['last_name'],
+                'username' => Str::slug($validatedData['username']),
+                'age' => $validatedData['age'],
+                'birth_date' => $validatedData['birth_date'],
+                'telephone' => $validatedData['telephone'],
+                'email' => $validatedData['email'],
+                'password' => Hash::make($validatedData['password'])
             ]);
             return response()->json(['message' => 'Usuario creado con éxito'], 201);
         } catch (ValidationException $e) {
