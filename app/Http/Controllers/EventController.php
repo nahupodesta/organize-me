@@ -29,12 +29,14 @@ class EventController extends Controller
             if(!$event){
                 return response()->json(['message'=>'No se ha encontrado ningún evento para editar'],JsonResponse::HTTP_NOT_FOUND);
             }
-            $event->name = $request->name;
-            $event->description = $request->description;
-            $event->start_date = $request->start_date;
-            $event->end_date = $request->end_date;
-            $event->update();
+            $validatedData = $request->validated();
+            
+            $event->name = $validatedData['name'];
+            $event->description = $validatedData['description'];
+            $event->start_date = $validatedData['start_date'];
+            $event->end_date = $validatedData['end_date'];
 
+            $event->save();
             return response()->json($event, JsonResponse::HTTP_OK);
         }catch (ValidationException $e) {
             return response()->json(['error' => $e->validator->errors()], JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
